@@ -1,61 +1,71 @@
 
-//Module 27-5, 27-6
+//Module 27-5, 27-6, 27-7, 27-8
 
 
-function inputValue (inputId){
+function inputValue(inputId) {
     const input = document.getElementById(inputId);
     const value = input.value;
     const num = parseFloat(value);
-    input.value ='';
+    input.value = '';
     return num;
 }
 
-function textValue(num, inputId){
+function textValue(num, inputId) {
     const ammount = document.getElementById(inputId);
     const amountValue = ammount.innerText;
     const amouNum = parseFloat(amountValue);
-    ammount.innerText= amouNum + num;
+    ammount.innerText = amouNum + num;
 }
 
-function updateBalance(num, inputId){
-    
-   const balance = document.getElementById(inputId);
-   const balanceTotal = balance.innerText;
-   const bal = parseFloat(balanceTotal)
+function updateBalance(num, isAdd) {
 
-    balance.innerText = bal + num;
+    const balance = document.getElementById('balance-total');
+    const bal = getCurrentBalance()
+
+    if(isAdd == true){
+        balance.innerText = bal + num;
+    }
+    else{
+        balance.innerText = bal - num;
+    }
 }
 
 
-document.getElementById('deposite-btn').addEventListener('click', function(){
+function getCurrentBalance(){
+    const balance = document.getElementById('balance-total');
+    const balanceTotal = balance.innerText;
+    const bal = parseFloat(balanceTotal)
+    return bal;
+}
+
+document.getElementById('deposite-btn').addEventListener('click', function () {
 
     const depoNum = inputValue('deposite-input');
-   
-    textValue(depoNum, 'deposite-total')
+    if(depoNum > 0){
 
-//    const balance = document.getElementById('balance-total');
-//    const balanceTotal = balance.innerText;
-//    const bal = parseFloat(balanceTotal)
+        textValue(depoNum, 'deposite-total')
 
-//     balance.innerText = bal + depoNum;
-updateBalance(depoNum, 'balance-total')
+        updateBalance(depoNum, true)
+    
+    }
 
 })
 
 // Module 27-4
 
-document.getElementById('withdraw-btn').addEventListener('click', function(){
+document.getElementById('withdraw-btn').addEventListener('click', function () {
 
-   const inpNum = inputValue('withdraw-input')
+    const inpNum = inputValue('withdraw-input')
+    const currentBalance = getCurrentBalance();
+    if(inpNum > 0 && inpNum < currentBalance){
 
-   textValue(inpNum, 'withdraw-total')
+        textValue(inpNum, 'withdraw-total',)
 
-//    const balanceTotal = document.getElementById('balance-total');
-//    const totalNum = balanceTotal.innerText;
-  
-//    const value = parseFloat(totalNum);
-//    balanceTotal.innerText = value - inpNum;
-updateBalance(inpNum, 'balance-total')
-    })
+        updateBalance(inpNum)
+    
+    }
+    if(inpNum > currentBalance){
+       alert("sorry you can't het more than available money")
+    }
+})
 
-   

@@ -10,19 +10,27 @@ function inputValue (inputId){
     return num;
 }
 
+function textValue(num, inputId){
+    const ammount = document.getElementById(inputId);
+    const amountValue = ammount.innerText;
+    const amouNum = parseFloat(amountValue);
+    ammount.innerText= amouNum + num;
+}
+
 
 document.getElementById('deposite-btn').addEventListener('click', function(){
-    const depositeAmmount = document.getElementById('deposite-total');
-    const amountValue = depositeAmmount.innerText;
-    const amouNum = parseFloat(amountValue);
+    // const depositeAmmount = document.getElementById('deposite-total');
+    // const amountValue = depositeAmmount.innerText;
+    // const amouNum = parseFloat(amountValue);
 
     // const depositeInput = document.getElementById('deposite-input');
     // const depositeValue = depositeInput.value;
     // const depoNum = parseFloat(depositeValue);
     const depoNum = inputValue('deposite-input');
     
-  const totalDepo= amouNum + depoNum;
-  depositeAmmount.innerText =totalDepo;
+//   const totalDepo= amouNum + depoNum;
+//   depositeAmmount.innerText =totalDepo;
+textValue(depoNum, 'deposite-total')
 
    const balance = document.getElementById('balance-total');
    const balanceTotal = parseFloat(balance.innerText);
@@ -37,9 +45,9 @@ document.getElementById('deposite-btn').addEventListener('click', function(){
 // Module 27-4
 
 document.getElementById('withdraw-btn').addEventListener('click', function(){
-   const withdrawAmmount = document.getElementById('withdraw-total');
-   const withdrawValue = withdrawAmmount.innerText;
-   const withNum = parseFloat(withdrawValue)
+//    const withdrawAmmount = document.getElementById('withdraw-total');
+//    const withdrawValue = withdrawAmmount.innerText;
+//    const withNum = parseFloat(withdrawValue)
 
 //    const withdrawInput = document.getElementById('withdraw-input')
 //    const inputValue = withdrawInput.value;
@@ -47,7 +55,9 @@ document.getElementById('withdraw-btn').addEventListener('click', function(){
 
    const inpNum = inputValue('withdraw-input')
 
-   withdrawAmmount.innerText = withNum + inpNum;
+//    withdrawAmmount.innerText = withNum + inpNum;
+
+textValue(inpNum, 'withdraw-total')
 
    const balanceTotal = document.getElementById('balance-total');
    const totalNum = balanceTotal.innerText;
@@ -58,4 +68,4 @@ document.getElementById('withdraw-btn').addEventListener('click', function(){
 //    withdrawInput.value ='';
     })
 
-// Module 27-5    
+   
